@@ -1,10 +1,27 @@
-Survival World — development journal
-2026-11-25: inspected initial 8 KB Three.js prototype; it only had basic movement, collection, and a placeholder attack. Replaced with an expanded single-file playable prototype.
-Implemented in this iteration: 3D third-person scene; desktop keyboard and touch joystick/buttons; resource nodes; zombie chase/attack and player melee; axe craft; hunger and food; bandage craft/use; wall/door/storage/fire craft and placement; mission progression and XP/levels; day/night lighting; local save/load; timed survival race, resource contest and practice duel; resize handling and reduced pixel ratio for mobile.
-Verification pending: JavaScript parse/static checks and browser runtime checks. This build is single-player only. Storage is currently represented by placed crates, not an interactive inventory container; door placement is decorative; leaderboard/tournament persistence and authoritative multiplayer are not implemented. Real multiplayer needs server-side state, authentication, networking and anti-cheat validation.
-Verification on 2026-11-25: Node v22.16.0 syntax check passed for the embedded ES module. A static test script passed checks for required gameplay function/control markers and duplicate DOM IDs (30 unique IDs). Browser runtime verification was attempted with headless Chromium via Playwright on both localhost HTTP and file URLs, but this environment returned ERR_BLOCKED_BY_ADMINISTRATOR for navigation. Thus the browser rendering/interaction test is blocked; this build is not yet certified as fully runtime-tested. Files are generated in /mnt/data for this run; external networking/GitHub publication has not been verified.
-2026-11-26: Implemented independent camera-look controls in the browser prototype: drag/touch on the screen's right-side gameplay surface to orbit/look (yaw/pitch), while the left joystick and keyboard movement remain separate and are camera-relative. PC mouse drag also adjusts camera view. Updated on-screen mobile help text. Synced index.html and SurvivalWorld.html.
-Verification: embedded JS syntax check and static assertions pass after camera control additions. Browser runtime still not verified in this environment; cannot confirm real touch/browser behavior until a live browser test is available.
+SURVIVAL WORLD — JURNAL DE DEZVOLTARE
+Data: 26.11.2026
 
-2026-11-26 — iteration 2: Replaced the block-like player/zombie placeholders with procedural articulated humanoid rigs: head/face details, neck, torso, upper/lower arms, hands, upper/lower legs, boots and player backpack. Added basic alternating walk cycles, zombie shamble/attack pose and player melee swing. Added craftable spear with higher damage and slightly longer reach; added unlockable outfit color variants at levels 3 and 5. Added local season-style records for survival time, gathered resources, score and eliminations, plus resource-contest best. Fixed touch camera handling so the touch branch uses explicit client-coordinate deltas rather than potentially undefined movementX/movementY. Added functional nearby chest deposit/withdraw for wood, stone and food. Extended save/load to include camera state, collected resource nodes, placed structures, storage contents, spear and survival time; added input validation for save files.
-Verification on 2026-11-26: `python test-survivalworld.py` passed. Node.js `--check` passed for the embedded ES module; 35 DOM IDs are unique; static assertions passed for gameplay, touch-camera regression and persistence fields. A live Chromium/Playwright page navigation was attempted against a local HTTP server, but Chromium returned `net::ERR_BLOCKED_BY_ADMINISTRATOR`; therefore WebGL rendering, CDN import, touch controls and gameplay interactions remain unverified in this environment. The build is still a single-player browser prototype; online leaderboards, PvP, tournaments, server authority and anti-cheat are not implemented. Procedural characters are more articulated but are not photorealistic scanned assets.
+Actualizare: extindere hartă și mediu urban
+- Suprafața terenului extinsă de la 220 x 220 m la 600 x 600 m.
+- Limitele de deplasare ale jucătorului extinse la aproximativ ±285 m.
+- Distanța de vizibilitate/fog și distanța far a camerei mărite pentru explorare.
+- Adăugată rețea de drumuri în grilă, cu marcaje rutiere.
+- Adăugate clădiri 3D: case individuale și blocuri de apartamente, fațade, ferestre, uși, acoperișuri și trepte.
+- Mărită distribuția resurselor în lume și crescut numărul de zombi.
+- Păstrate ghiozdanul, bara rapidă de arme și mecanicile existente.
+
+Verificări:
+- node --check pentru modulul JavaScript extras din HTML: PASS.
+- test-survivalworld.py: PASS.
+- 40 identificatori DOM unici.
+- Verificări statice pentru funcționalități, controale tactile și salvare/încărcare: PASS.
+
+Limitări / neconfirmat:
+- Nu a fost efectuat un test grafic interactiv într-un browser real/telefon în această execuție.
+- Clădirile sunt momentan mediu 3D exterior decorativ; nu au încă interioare accesibile, coliziuni de pereți sau uși funcționale.
+- Harta folosește generare procedurală locală; nu este încă un server multiplayer.
+
+Pași următori:
+- Coliziuni pentru clădiri și drumuri, intrări accesibile și interioare.
+- Zone distincte (cartier rezidențial, centru, zonă industrială, pădure) și puncte de interes.
+- Testare în browser pe PC și Android.
