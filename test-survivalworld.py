@@ -5,7 +5,7 @@ assert '<title>Survival World' in html
 assert html.count('<script type="module">') == 1
 ids=re.findall(r'id="([^"]+)"',html)
 assert len(ids)==len(set(ids)), 'duplicate IDs'
-required=['spawnZombie','collect','attack','craft','placeBuild','save','load','eat','startChallenge','startContest','duelPractice','dayTime','totalGathered','missionIndex']
+required=['spawnZombie','collect','attack','craft','placeBuild','save','load','eat','startChallenge','startContest','duelPractice','dayTime','totalGathered','missionIndex','cameraYaw','cameraPitch','lookPointer','pointermove','camOffset']
 for token in required: assert token in html, f'missing implementation marker: {token}'
 for el in ['stick','collect','hit','place','craftAxe','craftBandage','craftWall','craftDoor','craftChest','craftFire','save','load','eat','challenge','contest','duel']:
  assert el in ids, f'missing control id: {el}'
